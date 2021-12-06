@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="get" id="inscription">
+        <fieldset>
+        <legend>Inscription</legend>
+        <br>
+        <label>title</label>
+        <p id="p_titre"></p>
+        <input type="text" name="title">
+        <br><br>
+        <label>auteur</label>
+        <p id="p_auteur"></p>
+        <input type="text" name="auteur">
+        <br><br>
+        <label>prix</label>
+        <p id="p_prix"></p>
+        <input type="number" step=0.01 name="prix">
+        <br><br>
+        <label>date de publication</label>
+        <p id="p_date"></p>
+        <input type="date" name="date_publi">
+        <br><br>
+        <label>langue</label>
+        <p id="p_langue"></p>
+                <select type="text" value="" id="langage" name="langue">
+                <option></option>
+                <option>Français</option>
+                <option>Anglais</option>
+                <option>Arabe</option>
+                </select>
+                  <br><br>
+        <label>Roman</label>
+        <p id="p_type" ></p>
+        <input type="radio" name="type">
+            <label> Essai</label>
+            <input type="radio" name="type">
+            <label>Bande-Dessinée</label>
+            <input type="radio" name="type"> <br> <br>
+        
+        <input type="submit" name="valider" value="Valider">
+        </fieldset>
+    </form>
+       <script>
+           
+            var form_inscription = document.getElementById("inscription");
+            var champ_title = form_inscription.elements["title"];
+            var champ_auteur = form_inscription.elements["auteur"];
+            var champ_prix = form_inscription.elements["prix"];
+            var champ_date_publi = form_inscription.elements["date_publi"];
+            var champ_langue = form_inscription.elements["langue"];
+            var champ_type = form_inscription.elements["type"];
+
+           function valider (event) {
+            // code a exécuter lorsque le formulaire sera validé
+
+            // le formulaire est-il OK?
+            var form_OK = true;
+            // si le champ ne contient pas 10 caractères OU
+            // si il n'est pas composé que de nombres
+             //le nom
+             if(champ_title.value == ""){
+                form_OK = false;
+                // champ_nom.classList.add("erreur");
+                var erreurtitr = document.getElementById("p_titre"); 
+                    erreurtitr.innerHTML = ('le champs Prix est nom valide');
+                    erreurtitr.style.color ='red'; 
+                alert("le champs a vide DE title")
+            }
+            else
+            if(champ_title.value.length >30){
+                // champ_nom.classList.remove("erreur");
+                var erreurtitr = document.getElementById("p_titre"); 
+                    erreurtitr.innerHTML = ('le champs Prix est nom valide');
+                    erreurtitr.style.color ='red'; 
+                alert("le syntex de incorect alklakh")
+            }
+            // le prenom
+            if(champ_auteur.value == ""){
+                form_OK = false;
+               // champ_nom.classList.add("erreur");
+                alert("le champs a vide AUTEUR")
+            }
+            else
+            if(champ_auteur.value.length >30){
+                // champ_nom.classList.remove("erreur");
+                alert("le syntex de incorect alklakh2222")
+            }
+            // else{
+            //     champ_prenom.classList.remove("erreur");
+            //     alert("le syntex de incorect PRENOM")
+            // }
+            if(champ_prix.value == "")
+            {
+                alert("le champs de numre vide!!")
+            }
+           
+            if(champ_langue.selectedIndex=="")
+            {
+            alert ( "Please select langue!");
+            }
+            var option=document.getElementsByName('type');
+
+            if (!(option[0].checked || option[1].checked || option[2].checked))
+             {
+                alert("Please Select Your type");
+                return false;
+            }
+             if(!form_OK){
+                event.preventDefault();
+            }
+        }
+            form_inscription.addEventListener('submit', valider);
+       </script>
+</body>
+</html>
