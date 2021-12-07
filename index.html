@@ -10,24 +10,23 @@
     <form action="#" method="get" id="inscription">
         <fieldset>
         <legend>Inscription</legend>
-        <br>
-        <label>title</label>
+        <p>TITRE :</p>
         <p id="p_titre"></p>
         <input type="text" name="title">
-        <br><br>
-        <label>auteur</label>
+        <br>
+        <p>AUTEUR :</p>
         <p id="p_auteur"></p>
         <input type="text" name="auteur">
-        <br><br>
-        <label>prix</label>
+        <br>
+        <p>PRIX :</p>
         <p id="p_prix"></p>
-        <input type="number" step=0.01 name="prix">
-        <br><br>
-        <label>date de publication</label>
+        <input type="text"  name="prix">
+        <br>
+        <p>DATE DE PUPLICATION :</p>
         <p id="p_date"></p>
         <input type="date" name="date_publi">
-        <br><br>
-        <label>langue</label>
+        <br>
+        <p>LANGAGE :</p>
         <p id="p_langue"></p>
                 <select type="text" value="" id="langage" name="langue">
                 <option></option>
@@ -35,16 +34,16 @@
                 <option>Anglais</option>
                 <option>Arabe</option>
                 </select>
-                  <br><br>
-        <label>Roman</label>
-        <p id="p_type" ></p>
-        <input type="radio" name="type">
+            <br>   
+            <p>TYPE :</p> 
+            <label>Roman</label>
+            <input type="radio" name="type">
             <label> Essai</label>
             <input type="radio" name="type">
             <label>Bande-Dessinée</label>
-            <input type="radio" name="type"> <br> <br>
-        
-        <input type="submit" name="valider" value="Valider">
+            <input type="radio" name="type"><br>
+          <p id="p_type" ></p>
+        <input type="submit" name="valider" value="Valider" id="btn_valider"> <p id="p_valide" ></p>
         </fieldset>
     </form>
        <script>
@@ -57,63 +56,91 @@
             var champ_langue = form_inscription.elements["langue"];
             var champ_type = form_inscription.elements["type"];
 
-           function valider (event) {
+           function valider (event) 
+           {
+            event.preventDefault();
             // code a exécuter lorsque le formulaire sera validé
 
             // le formulaire est-il OK?
-            var form_OK = true;
-            // si le champ ne contient pas 10 caractères OU
-            // si il n'est pas composé que de nombres
-             //le nom
+            var form_OK =true;
              if(champ_title.value == ""){
                 form_OK = false;
-                // champ_nom.classList.add("erreur");
                 var erreurtitr = document.getElementById("p_titre"); 
-                    erreurtitr.innerHTML = ('le champs Prix est nom valide');
+                    erreurtitr.innerHTML = ('remplier le champs titre ');
                     erreurtitr.style.color ='red'; 
-                alert("le champs a vide DE title")
             }
-            else
+            
             if(champ_title.value.length >30){
                 // champ_nom.classList.remove("erreur");
+                form_OK = false;
                 var erreurtitr = document.getElementById("p_titre"); 
-                    erreurtitr.innerHTML = ('le champs Prix est nom valide');
+                    erreurtitr.innerHTML = ('le syntex et incorect de champs titre');
                     erreurtitr.style.color ='red'; 
-                alert("le syntex de incorect alklakh")
+        
             }
-            // le prenom
+            
             if(champ_auteur.value == ""){
                 form_OK = false;
-               // champ_nom.classList.add("erreur");
-                alert("le champs a vide AUTEUR")
-            }
-            else
-            if(champ_auteur.value.length >30){
-                // champ_nom.classList.remove("erreur");
-                alert("le syntex de incorect alklakh2222")
-            }
-            // else{
-            //     champ_prenom.classList.remove("erreur");
-            //     alert("le syntex de incorect PRENOM")
-            // }
-            if(champ_prix.value == "")
-            {
-                alert("le champs de numre vide!!")
+               var erreurtitr = document.getElementById("p_auteur"); 
+                    erreurtitr.innerHTML = ('remplier le champs auteur ');
+                    erreurtitr.style.color ='red'; 
             }
            
+            if(champ_auteur.value.length >30){
+                champ_nom.classList.remove("erreur");
+                form_OK = false;
+               var erreurtitr = document.getElementById("p_auteur"); 
+                    erreurtitr.innerHTML = ('le syntex et incorect de champs auteur ');
+                    erreurtitr.style.color ='red'; 
+            }
+            if(champ_prix.value == "")
+            {
+                form_OK = false;
+               var erreurtitr = document.getElementById("p_prix"); 
+                    erreurtitr.innerHTML = ('remplier le champs prix ');
+                    erreurtitr.style.color ='red'; 
+            }
+            if(isNaN(champ_prix.value))
+            {
+                form_OK = false;
+               var erreurtitr = document.getElementById("p_prix"); 
+                    erreurtitr.innerHTML = ('entre un number ');
+                    erreurtitr.style.color ='red'; 
+            }
+            if(champ_prix.value<0)
+            {
+                form_OK = false;
+                    var erreurtitr = document.getElementById("p_prix"); 
+                    erreurtitr.innerHTML = ('entre un number positife ');
+                    erreurtitr.style.color ='red'; 
+            }
+            if(champ_date_publi.value == ""){
+                form_OK = false;
+                var erreurtitr = document.getElementById("p_date"); 
+                erreurtitr.innerHTML = ('remplier le champs date ');
+                erreurtitr.style.color ='red'; 
+            }
             if(champ_langue.selectedIndex=="")
             {
-            alert ( "Please select langue!");
+                form_OK = false;
+               var erreurtitr = document.getElementById("p_langue"); 
+                    erreurtitr.innerHTML = ('Please select langue!');
+                    erreurtitr.style.color ='red'; 
             }
             var option=document.getElementsByName('type');
 
             if (!(option[0].checked || option[1].checked || option[2].checked))
              {
-                alert("Please Select Your type");
-                return false;
+               var erreurtitr = document.getElementById("p_type"); 
+                    erreurtitr.innerHTML = ('Please Select Your type');
+                    erreurtitr.style.color ='red'; 
+                form_OK=false;
             }
-             if(!form_OK){
-                event.preventDefault();
+            if(form_OK==true)
+            {
+                var erreurtitr = document.getElementById("p_valide"); 
+                    erreurtitr.innerHTML = ('validation compliet');
+                    erreurtitr.style.color ='green'; 
             }
         }
             form_inscription.addEventListener('submit', valider);
